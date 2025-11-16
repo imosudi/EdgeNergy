@@ -1,11 +1,13 @@
-import time
 import threading
+import json
+import time
+from queue import Queue, Empty
 from mqtt_client import build_client
 from infer import InferenceEngine
 from config import EDGE_ID, HOUSE_ID
-import json
 
-queue = []
+# Thread-safe queue
+queue = Queue()
 client = build_client(queue)
 engine = InferenceEngine()
 
@@ -14,13 +16,18 @@ def mqtt_loop():
 
 def processing_loop():
     while True:
-        if queue:
-            item = queue.pop(0)
-            ct_samples = item.get('ct_sample', [])
+        try:
+            # wait up to 1 second for a message
+            item = queue.get(timeout=1.0)
+        except Empty:
+            continue  # no message, loop again
+
+        try:
+            ct_samples = item.get("ct_sample", [])
             preds, latency = engine.infer_nilm(ct_samples)
             if preds:
                 msg = {
-                    "ts": item.get('ts'),
+                    "ts": item.get("ts"),
                     "edge_id": EDGE_ID,
                     "house_id": HOUSE_ID,
                     "model": "nilm-v1.tflite",
@@ -32,10 +39,14 @@ def processing_loop():
                     f"home/{HOUSE_ID}/edge/{EDGE_ID}/inference",
                     json.dumps(msg)
                 )
-                print("Published inference", msg)
-        else:
-            time.sleep(0.1)
+                print(f"[Inference Published] {msg}")
+        except Exception as e:
+            print(f"[Processing Error] {e}")
+        finally:
+            queue.task_done()  # mark message as processed
 
 if __name__ == "__main__":
+    # start MQTT listener
     threading.Thread(target=mqtt_loop, daemon=True).start()
+    print("Edge inference service started...")
     processing_loop()

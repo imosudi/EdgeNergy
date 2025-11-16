@@ -1,7 +1,6 @@
 Use TensorFlow Lite from full TensorFlow (Recommended)
-Replace tflite-runtime with the full TensorFlow package, but you'll only use the lite interpreter:
+Replace tflite-runtime with the full TensorFlow package, but use only the lite interpreter:
 pip install tensorflow
-Then in your code, change:
 python# Old import
 import tflite_runtime.interpreter as tflite
 

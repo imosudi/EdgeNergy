@@ -1,6 +1,7 @@
 import time
 import random
 import json
+from datetime import datetime, timezone
 import paho.mqtt.client as mqtt
 import os
 
@@ -9,17 +10,23 @@ MQTT_BROKER = os.environ.get("MQTT_BROKER", "localhost")
 MQTT_PORT = int(os.environ.get("MQTT_PORT", 1883))
 TOPIC = "home/energy"
 
-# Simulate N smart plugs
+# Simulate N smart devices
 NUM_DEVICES = 5
 
 def generate_mock_reading(device_id):
-    """Generate a dummy power reading (Watts) for a device"""
+    """Generate a dummy telemetry JSON for a smart device"""
+    # Generate a small waveform sample (e.g., 10 points for simplicity)
+    ct_sample = [round(random.uniform(0.0, 0.5), 2) for _ in range(10)]
+
     return {
-        "device_id": f"plug_{device_id}",
+        "ts": datetime.now(timezone.utc).isoformat(timespec='milliseconds') + "Z",
+        "device_id": f"esp32-{device_id:03d}",
+        "house_id": "home-01",
+        "sample_rate": 50,
         "voltage": round(random.uniform(210, 240), 1),
         "current": round(random.uniform(0.0, 5.0), 2),
         "power": round(random.uniform(0.0, 1200.0), 1),
-        "timestamp": int(time.time())
+        "ct_sample": ct_sample
     }
 
 def main():
