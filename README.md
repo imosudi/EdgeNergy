@@ -15,6 +15,7 @@ An open, reproducible device→edge→cloud architecture for real-time smart hom
 ![nilm](https://img.shields.io/badge/topic-nilm-ffd166)
 ![anomaly-detection](https://img.shields.io/badge/topic-anomaly--detection-f5b7b1)
 ![raspberry-pi](https://img.shields.io/badge/topic-raspberry--pi-c51a4a?logo=raspberrypi)
+![Orange Pi](https://img.shields.io/badge/Orange%20Pi-Edge%20SBC-orange?logo=arm)
 ![esp32](https://img.shields.io/badge/topic-esp32-2d7bba)
 ![mqtt](https://img.shields.io/badge/topic-mqtt-3ddc84)
 ![tflite](https://img.shields.io/badge/topic-tflite-ff6b6b)
