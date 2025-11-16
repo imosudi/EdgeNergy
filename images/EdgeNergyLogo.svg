@@ -1,0 +1,15 @@
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer hexagon (Edge Computing / IoT node) -->
+  <polygon points="90,10 155,45 155,115 90,150 25,115 25,45" fill="none" stroke="#2B6CB0" stroke-width="6"></polygon>
+
+  <!-- Lightning bolt (Energy intelligence) -->
+  <polygon points="95,35 75,90 105,90 85,145 125,85 95,85" fill="#2B6CB0"></polygon>
+
+  <!-- Signal arcs (Wireless MQTT / device→edge link) -->
+  <path d="M45 60 Q60 45 80 55" stroke="#2B6CB0" stroke-width="5" fill="none" stroke-linecap="round"></path>
+  <path d="M40 80 Q60 60 85 70" stroke="#2B6CB0" stroke-width="5" fill="none" stroke-linecap="round"></path>
+
+  <!-- TinyML circle (Inference on-device) -->
+  <circle cx="130" cy="105" r="12" stroke="#2B6CB0" stroke-width="4" fill="none"></circle>
+  <circle cx="130" cy="105" r="4" fill="#2B6CB0"></circle>
+</svg>
