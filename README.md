@@ -29,7 +29,7 @@ Includes firmware, edge preprocessing, TinyML models (NILM, anomaly detection, f
 ![Home Automation](https://img.shields.io/badge/topic-Home--Automation-ffd43b)
 ![Edge AI](https://img.shields.io/badge/topic-Edge--AI-00c2a8)
 
----
+
 
 ---
 
@@ -44,7 +44,6 @@ Copyright (c) 2025, Mosudi Isiaka
 All rights reserved.
 ```
 
----
 
 ## 👤 Author
 
@@ -53,14 +52,13 @@ All rights reserved.
 🌐 [https://mioemi.com](https://mioemi.com)   
 💻 [https://github.com/imosudi](https://github.com/imosudi)
 
----
+
 
 ## Contributing
 
 Contributions are welcome!  
 Please open an issue or pull request to suggest new features, improvements, or bug fixes.
 
----
 
 ## Citation (Academic Use)
 
